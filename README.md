@@ -1,2 +1,2 @@
 # lolajq-portfolio
-portfolio de la niña mas bonita
+portfolio de la niña más bonita
