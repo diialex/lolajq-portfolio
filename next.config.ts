@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: '/lolajq-portfolio',
 };
 
 export default nextConfig;
