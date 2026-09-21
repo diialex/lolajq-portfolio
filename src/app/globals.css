@@ -3,3 +3,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@theme {
+  /* Paleta editorial */
+  --color-cream:    #f6f5f0;   /* Fondo principal */
+  --color-paper:    #ebe8e0;   /* Fondo alternativo secciones */
+  --color-ink:      #292a2c;   /* Texto principal */
+  --color-charcoal: #1a1a1a;   /* Negro absoluto (coincide con la esfera) */
+  --color-gold:     #c5a258;   /* Acento dorado */
+  --color-stone:    #8b8680;   /* Texto secundario */
+
+  /* Tipografías (las variables vienen de next/font) */
+  --font-display: var(--font-display);
+  --font-sans:    var(--font-geist-sans);
+
+  /* Curva de easing editorial */
+  --ease-editorial: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-cream);
+  }
+}
