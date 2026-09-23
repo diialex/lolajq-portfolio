@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   basePath: '/lolajq-portfolio',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: '/lolajq-portfolio',
+  },
 };
 
 export default nextConfig;

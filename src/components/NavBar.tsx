@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const links = [
-  { href: '/#colecciones', label: 'Colecciones' },
-  { href: '/#atelier',     label: 'Atelier' },
+  { href: '/#trabajos',    label: 'Trabajos' },
+  { href: '/#atelier',     label: 'Proceso' },
   { href: '/#sobre-mi',    label: 'Sobre mí' },
-  { href: '/#contacto',    label: 'Contacto' },
+  { href: '/#contact',    label: 'Contacto' },
 ];
 
 export default function Navbar() {

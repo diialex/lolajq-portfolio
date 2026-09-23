@@ -6,9 +6,9 @@ import { MeshDistortMaterial, Sphere, Environment, OrbitControls } from '@react-
 export default function HeroCanvas() {
   return (
     // z-0 y le ponemos aquí el fondo claro bg-stone-50
-    <div className="absolute inset-0 z-0 bg-stone-50" style={{ width: '100vw', height: '100vh' }}>
+    <div className="absolute inset-0 h-full w-full bg-stone-50 pointer-events-none">
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-        <OrbitControls />
+        
         
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
