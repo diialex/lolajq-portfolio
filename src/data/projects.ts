@@ -252,7 +252,7 @@ export const series: Series[] = [
           {
             slug: 'adidas-heel',
             name: 'Tacon Adidas',
-            category: 'Tacon',
+            category: 'Tacones',
             notes: 'Tacón tipo stiletto desarrollado a partir del diálogo entre el calzado deportivo y la feminidad clásica, fusionando lo urbano con el diseño de moda.',
             inspiration: [
               '/images/projects/calzado/inspoAdidas.jpg',
@@ -270,7 +270,7 @@ export const series: Series[] = [
           {
             slug: 'belle-hari',
             name: 'Tacon Belle Hari',
-            category: 'Tacon',
+            category: 'Tacones',
             notes: 'Sandalia de tacón inspirada en la identidad estética de la marca española Bellehari, explorando la relación entre elegancia, diseño contemporáneo y funcionalidad.',
             inspiration: [
               '/images/projects/calzado/inspoBellehari.jpg',
@@ -288,7 +288,7 @@ export const series: Series[] = [
           {
             slug: 'basquiat',
             name: 'Tacon Basquiat',
-            category: 'Tacon',
+            category: 'Tacones',
             notes: 'Tacón inspirado en la obra de Jean-Michel Basquiat, trasladando el lenguaje expresivo y pictórico del arte urbano al diseño de calzado',
             inspiration: [
               '/images/projects/calzado/inspoBasquiat.jpg',
@@ -306,7 +306,7 @@ export const series: Series[] = [
           {
             slug: 'flamingo',
             name: 'Tacon Flamenco',
-            category: 'Tacon',
+            category: 'Tacones',
             notes: 'Tacón que fusiona la silueta clásica Luis XV con elementos de la cultura flamenca, combinando tradición, ornamentación y diseño contemporáneo.',
             inspiration: [
               '/images/projects/calzado/inspoFlamenq.jpg',
@@ -324,7 +324,7 @@ export const series: Series[] = [
           {
             slug: 'schiaparelli',
             name: 'Tacon schiaparelli',
-            category: 'Tacon',
+            category: 'Tacones',
             notes: 'Diseño de tacón inspirado en el surrealismo de Elsa Schiaparelli, explorando la relación entre moda, arte y objeto simbólico.',
             inspiration: [
               '/images/projects/calzado/inspoSchiaparelli.jpg',
