@@ -6,6 +6,7 @@ import { asset } from '@/lib/asset';
 import EditorialGrid from '@/components/EditorialGrid';
 import FanGrid from '@/components/FanGrid';
 import CaseStudyList from '@/components/CaseStudyList';
+import SketchGrid from '@/components/SketchGrid';
 
 type Params = { slug: string };
 
