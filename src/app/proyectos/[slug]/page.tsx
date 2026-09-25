@@ -2,10 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { allProjects, getProjectBySlug } from '@/data/projects';
+import { asset } from '@/lib/asset';
+import EditorialGrid from '@/components/EditorialGrid';
+import FanGrid from '@/components/FanGrid';
+import CaseStudyList from '@/components/CaseStudyList';
 
 type Params = { slug: string };
 
-// Obligatorio para output: 'export'
 export function generateStaticParams(): Params[] {
   return allProjects.map((p) => ({ slug: p.slug }));
 }
@@ -54,7 +57,7 @@ export default async function ProjectPage({
       <div className="mx-auto max-w-7xl px-6 mb-24">
         <div className="relative aspect-[4/5] md:aspect-[16/9] bg-paper overflow-hidden">
           <Image
-            src={project.cover}
+            src={asset(project.cover)}
             alt={project.title}
             fill
             priority
@@ -64,31 +67,19 @@ export default async function ProjectPage({
         </div>
       </div>
 
-      {/* Galería */}
-      {project.gallery && project.gallery.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 mb-24">
-          <h2 className="font-display text-2xl md:text-3xl font-light text-ink mb-10">
-            Proceso
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {project.gallery.map((img, i) => (
-              <div
-                key={img}
-                className={`relative aspect-[3/4] bg-paper overflow-hidden ${
-                  i % 3 === 0 ? 'md:col-span-2 md:aspect-[16/10]' : ''
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt={`${project.title} — ${i + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
+      {/* Galería: FanGrid (series de piezas) o EditorialGrid (proceso) */}
+      {project.display === 'case-study' && project.caseStudies && (
+        <CaseStudyList cases={project.caseStudies} title={project.title} />
+      )}
+
+      {project.gallery && project.gallery.length > 0 && project.display !== 'case-study' && (
+        project.display === 'grid' ? (
+          <FanGrid items={project.gallery} title={project.title} />
+        ) : project.display === 'sketch' ? (
+          <SketchGrid items={project.gallery} title={project.title} />
+        ) : (
+          <EditorialGrid items={project.gallery} title={project.title} />
+        )
       )}
 
       {/* Siguiente proyecto */}
