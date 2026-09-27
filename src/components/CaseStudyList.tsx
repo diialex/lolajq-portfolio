@@ -1,17 +1,23 @@
-import Image from 'next/image';
 import { asset } from '@/lib/asset';
 import type { CaseStudy } from '@/data/projects';
 
 type Props = {
   cases: CaseStudy[];
   title: string;
+  intro?: string;
 };
 
-export default function CaseStudyList({ cases, title }: Props) {
+export default function CaseStudyList({ cases, title, intro }: Props) {
   if (!cases.length) return null;
 
   return (
     <section className="mx-auto max-w-7xl px-6 mb-24">
+      {intro && (
+        <p className="mb-20 max-w-2xl text-base leading-relaxed text-stone">
+          {intro}
+        </p>
+      )}
+
       <div className="space-y-32">
         {cases.map((cs, i) => (
           <CaseRow key={cs.slug} cs={cs} index={i} title={title} />
@@ -21,18 +27,9 @@ export default function CaseStudyList({ cases, title }: Props) {
   );
 }
 
-function CaseRow({
-  cs,
-  index,
-  title,
-}: {
-  cs: CaseStudy;
-  index: number;
-  title: string;
-}) {
+function CaseRow({ cs, index, title }: { cs: CaseStudy; index: number; title: string }) {
   return (
     <article className="border-t border-ink/10 pt-10">
-      {/* Cabecera del caso */}
       <header className="grid grid-cols-12 gap-6 mb-12">
         <div className="col-span-12 md:col-span-2">
           <p className="font-display text-5xl md:text-6xl text-gold leading-none">
@@ -61,31 +58,30 @@ function CaseRow({
         </div>
       </header>
 
-      {/* Tres fases: Inspiración · Bocetos · Resultado */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         <PhaseColumn
           label="Inspiración"
           images={cs.inspiration}
           altBase={`${title} — ${cs.name} inspiración`}
           colSpan="md:col-span-4"
-          imageAspect="aspect-square"
-          columns={3}
+          columns={2}
+          blend={false}
         />
         <PhaseColumn
           label="Bocetos"
           images={cs.sketch}
           altBase={`${title} — ${cs.name} bocetos`}
           colSpan="md:col-span-3"
-          imageAspect="aspect-[3/4]"
           columns={1}
+          blend
         />
         <PhaseColumn
           label="Resultado"
           images={cs.result}
           altBase={`${title} — ${cs.name} resultado`}
           colSpan="md:col-span-5"
-          imageAspect="aspect-[3/4]"
           columns={2}
+          blend={false}
         />
       </div>
     </article>
@@ -97,37 +93,41 @@ function PhaseColumn({
   images,
   altBase,
   colSpan,
-  imageAspect,
   columns,
+  blend,
 }: {
   label: string;
   images?: string[];
   altBase: string;
   colSpan: string;
-  imageAspect: string;
   columns: 1 | 2 | 3;
+  blend: boolean;
 }) {
   if (!images || images.length === 0) return null;
 
-  const gridCols =
-    columns === 1 ? 'grid-cols-1' : columns === 2 ? 'grid-cols-2' : 'grid-cols-3';
+  // Si hay menos imágenes que columnas, reduce el número para que
+  // las imágenes no se queden enanas (1 sola imagen = 1 columna full)
+  const effectiveColumns = Math.min(columns, images.length);
+  const colClass =
+    effectiveColumns === 1 ? 'columns-1'
+    : effectiveColumns === 2 ? 'columns-2'
+    : 'columns-3';
 
   return (
     <div className={colSpan}>
       <p className="text-[10px] tracking-[0.3em] uppercase text-stone mb-4">
         {label}
       </p>
-      <div className={`grid ${gridCols} gap-2`}>
+      <div className={`${colClass} gap-3 [column-fill:_balance]`}>
         {images.map((src, i) => (
-          <div key={src} className={`relative ${imageAspect} bg-paper overflow-hidden`}>
-            <Image
+          <figure key={src} className="mb-3 break-inside-avoid">
+            <img
               src={asset(src)}
               alt={`${altBase} — ${i + 1}`}
-              fill
-              sizes="(max-width: 768px) 50vw, 25vw"
-              className="object-cover"
+              loading="lazy"
+              className={`w-full h-auto ${blend ? 'mix-blend-multiply' : ''}`}
             />
-          </div>
+          </figure>
         ))}
       </div>
     </div>

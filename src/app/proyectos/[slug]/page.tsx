@@ -70,7 +70,7 @@ export default async function ProjectPage({
 
       {/* Galería: FanGrid (series de piezas) o EditorialGrid (proceso) */}
       {project.display === 'case-study' && project.caseStudies && (
-        <CaseStudyList cases={project.caseStudies} title={project.title} />
+        <CaseStudyList cases={project.caseStudies} title={project.title} intro={project.caseStudiesIntro}/>
       )}
 
       {project.gallery && project.gallery.length > 0 && project.display !== 'case-study' && (

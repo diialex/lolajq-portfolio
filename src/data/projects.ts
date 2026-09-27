@@ -14,7 +14,7 @@ export type GalleryItem = {
 export type CaseStudy = {
   slug: string;                 // 'bota-alta'
   name: string;                 // 'Bota alta'
-  category: 'Tacones' | 'Botas' | 'Deportivas';
+  category: string;
   inspiration?: string[];       // imágenes de referencia (varias)
   sketch?: string[];            // bocetos
   result?: string[];            // resultados finales
@@ -45,6 +45,7 @@ export type Project = {
   coverSequence?: string[];      // (reservado, no se usa aún)
   display?: ProjectDisplay;
   caseStudies?: CaseStudy[];
+  caseStudiesIntro?: string;
   gallery?: GalleryItem[];
   galleryLayout?: GalleryLayout; // zigzag = 'editorial'
   videos?: ProjectVideo[];
@@ -357,6 +358,7 @@ export const series: Series[] = [
     projects: [
       {
         slug: 'ceac',
+        display: 'case-study',
         title: 'Pruebas CEAC',
         year: '2022',
         category: 'Académico',
@@ -364,11 +366,55 @@ export const series: Series[] = [
           'Tres ejercicios que aplican conceptos creativos y funcionales al diseño de moda y equipación deportiva.',
         longDescription:
           'Ejercicios realizados para las pruebas de acceso al Grado de Diseño de Moda en CEAC, donde se desarrollan propuestas de moodboard, diseño de prenda y equipación deportiva, aplicando conceptos creativos y funcionales.',
-        cover: '/images/projects/ceac/cover.jpg',
-        galleryLayout: 'editorial',
-        gallery: [],
+        caseStudiesIntro:
+          'Cada prueba parte de un brief distinto y se resuelve en tres fases: referencias visuales, desarrollo del boceto y resultado final. Los ejercicios exploran desde la moda de calle japonesa hasta la equipación técnica deportiva.',
+        cover: '/images/projects/ceac/moodboard.png',
+        coverAspect: 'aspect-[16/9]',
+        caseStudies: [
+          {
+            slug: 'falda-evase',
+            name: 'Falda Evasé',
+            category: 'Prenda',
+            notes:
+              'Inspiración en la cultura callejera de Harajuku, Tokio. Material principal: neopreno.',
+            inspiration: [
+              '/images/projects/ceac/inspoFalda.jpg',
+              '/images/projects/ceac/inspoFalda1.png',
+              '/images/projects/ceac/inspoFalda2.png',
+              '/images/projects/ceac/inspoFalda3.png',
+            ],
+            sketch: [
+              '/images/projects/ceac/bocetoFalda.jpg',
+              '/images/projects/ceac/bocetoFalda1.jpg',
+            ],
+            result: [
+              '/images/projects/ceac/resultFalda.png',
+            ],
+          },
+          {
+            slug: 'equipacion-skate',
+            name: 'Equipación Deporte',
+            category: 'Equipación',
+            notes:
+              'Equipación técnica para un equipo de skateboard. Desarrollo digital sobre tableta gráfica.',
+            inspiration: [
+              '/images/projects/ceac/inspoSkate.jpg',
+              '/images/projects/ceac/inspoSkate1.jpg',
+              '/images/projects/ceac/inspoSkate2.jpg',
+            ],
+            sketch: [
+              '/images/projects/ceac/bocetoSkate.png',
+              '/images/projects/ceac/bocetoSkate1.png',
+              '/images/projects/ceac/bocetoSkate2.png',
+            ],
+            result: [
+              '/images/projects/ceac/resultSkate.png',
+            ],
+          },
+          // Añade aquí la tercera prueba cuando la tengas lista
+        ],
         size: 'tall',
-      },
+      }
     ],
   },
 ];
