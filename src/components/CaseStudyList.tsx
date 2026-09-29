@@ -96,6 +96,7 @@ function PhaseColumn({
   colSpan,
   columns,
   blend,
+  uniform = false,
 }: {
   label: string;
   images?: string[];
@@ -103,6 +104,7 @@ function PhaseColumn({
   colSpan: string;
   columns: 1 | 2 | 3;
   blend: boolean;
+  uniform?: boolean;
 }) {
   if (!images || images.length === 0) return null;
 
