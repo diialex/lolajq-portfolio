@@ -67,7 +67,7 @@ function PaletteSphere() {
 
 export default function HeroCanvas() {
   return (
-    <div className="absolute inset-0 z-0 h-full w-full bg-stone-50">
+    <div className="absolute inset-0 z-0 h-full w-full bg-stone-50 pointer-events-none md:pointer-events-auto">
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
         <OrbitControls
           enableZoom={false}
