@@ -1,22 +1,22 @@
 'use client';
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
   MeshDistortMaterial,
   Sphere,
   Environment,
   OrbitControls,
 } from '@react-three/drei';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 const PALETTE = [
-  '#1a1a1a',
-  '#3a3632',
-  '#8b8680',
-  '#c5a258',
-  '#8a6f3f',
-  '#1a1a1a',
+  '#1a1a1a', // charcoal
+  '#3a3632', // ink
+  '#6b6660', // stone más oscuro (era #8b8680)
+  '#8a7340', // gold más oscuro (era #c5a258)
+  '#6f5832', // bronze más oscuro (era #8a6f3f)
+  '#1a1a1a', // vuelta a charcoal
 ];
 
 const CYCLE_SECONDS = 18;
@@ -53,71 +53,43 @@ function PaletteSphere() {
   );
 }
 
-// Ajusta la cámara según el aspect ratio para que la esfera siempre quepa
-function ResponsiveCamera() {
-  const { camera, size } = useThree();
-
-  useEffect(() => {
-    const aspect = size.width / size.height;
-
-    // Base: cámara a z=5 con fov=45 en desktop apaisado.
-    // En vertical (aspect < 1), alejamos la cámara proporcionalmente.
-    // En horizontal muy ancho (aspect > 1.5), la acercamos un poco.
-    let z = 5;
-
-    if (aspect < 1) {
-      // Móvil vertical: alejamos hasta z≈7.5 en aspecto 9/16
-      const t = Math.max(0, (1 - aspect) / 0.44); // 0 a 1
-      z = 5 + t * 2.5;
-    } else if (aspect > 1.5) {
-      // Pantallas muy anchas: acercamos ligeramente
-      z = 5 - Math.min(1, (aspect - 1.5) * 0.5);
-    }
-
-    camera.position.set(0, 0, z);
-    camera.updateProjectionMatrix();
-  }, [camera, size.width, size.height]);
-
-  return null;
-}
-
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    const update = () => setIsDesktop(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-  return isDesktop;
-}
-
 export default function HeroCanvas() {
-  const isDesktop = useIsDesktop();
+  // Se calcula UNA VEZ, nunca cambia → no hay re-montajes
+  const [isDesktop] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia('(min-width: 768px)').matches
+      : true
+  );
+
+  // useMemo para que las props no cambien de referencia entre renders
+  const camera = useMemo(
+    () => ({
+      position: [0, 0, isDesktop ? 5 : 7] as [number, number, number],
+      fov: 45,
+    }),
+    [isDesktop]
+  );
+
+  const style = useMemo(
+    () => ({
+      touchAction: 'pan-y' as const,
+      pointerEvents: (isDesktop ? 'auto' : 'none') as 'auto' | 'none',
+    }),
+    [isDesktop]
+  );
 
   return (
     <div className="absolute inset-0 z-0 h-full w-full bg-stone-50">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 2]}
-        style={{
-          touchAction: 'pan-y',
-          pointerEvents: isDesktop ? 'auto' : 'none',
-        }}
-      >
-        <ResponsiveCamera />
+      <Canvas camera={camera} dpr={[1, 2]} style={style}>
         {isDesktop && (
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            rotateSpeed={0.35}
-          />
+          <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={0.35} />
         )}
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[10, 10, 10]} intensity={0.9} />
+        {/* Iluminación de estudio sin Environment */}
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[5, 5, 5]} intensity={1.2} />
+        <directionalLight position={[-5, -3, -5]} intensity={0.5} />
+        <pointLight position={[0, 3, 2]} intensity={0.4} />
         <PaletteSphere />
-        <Environment preset="city" />
       </Canvas>
     </div>
   );
