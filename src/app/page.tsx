@@ -18,9 +18,9 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="relative min-h-[100svh] overflow-hidden flex flex-col items-center justify-center pt-24 pb-16">
-        <Suspense fallback={null}>
+        
           <HeroCanvas />
-        </Suspense>
+        
 
         <div className="z-10 text-center pointer-events-none">
           <h1 className="font-display text-6xl md:text-8xl font-light tracking-[0.2em] text-white uppercase ml-4 mix-blend-difference">

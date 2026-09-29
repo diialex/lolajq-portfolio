@@ -23,10 +23,7 @@ const CYCLE_SECONDS = 18;
 
 function PaletteSphere() {
   const matRef = useRef<any>(null);
-  const colors = useMemo(
-    () => PALETTE.map((hex) => new THREE.Color(hex)),
-    []
-  );
+  const colors = useMemo(() => PALETTE.map((hex) => new THREE.Color(hex)), []);
   const tmpColor = useMemo(() => new THREE.Color(), []);
   const elapsed = useRef(0);
 
@@ -74,11 +71,13 @@ export default function HeroCanvas() {
   return (
     <div className="absolute inset-0 z-0 h-full w-full bg-stone-50">
       <Canvas
-        style={{ touchAction: 'pan-y' }}
         camera={{ position: [0, 0, 5], fov: 45 }}
         dpr={[1, 2]}
+        style={{
+          touchAction: 'pan-y',
+          pointerEvents: isDesktop ? 'auto' : 'none',
+        }}
       >
-        {/* Solo en desktop: rotación con ratón */}
         {isDesktop && (
           <OrbitControls
             enableZoom={false}

@@ -1,36 +1,30 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 @theme {
-  /* Paleta editorial */
-  --color-cream:    #f6f5f0;   /* Fondo principal */
-  --color-paper:    #ebe8e0;   /* Fondo alternativo secciones */
-  --color-ink:      #292a2c;   /* Texto principal */
-  --color-charcoal: #1a1a1a;   /* Negro absoluto (coincide con la esfera) */
-  --color-gold:     #c5a258;   /* Acento dorado */
-  --color-stone:    #8b8680;   /* Texto secundario */
+  --color-cream:    #f6f5f0;
+  --color-paper:    #ebe8e0;
+  --color-ink:      #292a2c;
+  --color-charcoal: #1a1a1a;
+  --color-gold:     #c5a258;
+  --color-stone:    #8b8680;
 
-  /* Tipografías (las variables vienen de next/font) */
   --font-display: var(--font-display);
   --font-sans:    var(--font-geist-sans);
 
-  /* Curva de easing editorial */
   --ease-editorial: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   body {
     background-color: var(--color-cream);
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   ::selection {
     background-color: var(--color-gold);
