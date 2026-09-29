@@ -40,6 +40,7 @@ export type Project = {
   category: string;
   description: string;
   longDescription?: string;
+  hero?: string; 
   cover: string;
   coverAspect?: string;
   coverSequence?: string[];      // (reservado, no se usa aún)
@@ -75,12 +76,13 @@ export const series: Series[] = [
         title: 'Investigación artística',
         year: '2023 — 2025',
         category: 'Dibujo',
+        display: 'sketch',
         description:
           'Serie de bocetos y figurines centrados en el estudio del cuerpo, la proporción, el gesto y el movimiento como base del proceso creativo.',
         longDescription:
           'A través del dibujo se exploran siluetas, volúmenes y posibles aplicaciones al diseño de moda, utilizando el cuerpo como base del proceso creativo. La serie reúne figurines, estudios anatómicos y bocetos de trabajo.',
         cover: '/images/projects/investigacion-artistica/plastic_cover.png',
-        galleryLayout: 'editorial',
+        hero: '/images/projects/investigacion-artistica/19.jpg',
         gallery: [
           { src: '/images/projects/investigacion-artistica/01-boceto-figurin.png'},
           { src: '/images/projects/investigacion-artistica/02-boceto-figurin.png'},
@@ -103,7 +105,8 @@ export const series: Series[] = [
           'Trabajo como modelo en proyectos de publicidad y moda. Comprensión del comportamiento de la prenda sobre el cuerpo en movimiento.',
         longDescription:
           'Etapa como modelo en varios proyectos de publicidad y moda. Esta experiencia ha permitido comprender el comportamiento de las prendas sobre el cuerpo en movimiento, la importancia del estilismo y la construcción de una imagen. Refuerza el interés por el diseño de moda desde una mirada práctica y visual, entendiendo el cuerpo como punto de partida del diseño.',
-        cover: '/images/projects/gato.jpg',
+        cover: '/images/projects/corporal/24.jpg',
+        hero: '/images/projects/corporal/130.jpg',
         galleryLayout: 'editorial',
         gallery: [],
         size: 'tall',
@@ -119,64 +122,6 @@ export const series: Series[] = [
       'La intervención como método: tomar un objeto existente y reescribirlo. Exploración del color, el gesto y la estructura desde la manipulación directa.',
     projects: [
       {
-        slug: 'abanicos',
-        display: 'grid',
-        title: 'Abanicos pintados a mano',
-        year: '2024',
-        category: 'Objeto',
-        description: 'Serie de abanicos intervenidos como ejercicio de exploración del color y el gesto. El abanico como extensión simbólica del cuerpo.',
-        longDescription: 'Serie de abanicos intervenidos y pintados a mano como ejercicio de exploración del color, el gesto y el objeto. El abanico se entiende como complemento estético y extensión simbólica del cuerpo dentro del lenguaje de la moda.',
-        cover: '/images/projects/abanicos/schiaparelli-01.png',
-    gallery: [
-      {
-        src: '/images/projects/abanicos/acabanicoSenses.jpg',
-        images: [
-          '/images/projects/abanicos/01b.webp',
-          '/images/projects/abanicos/01c.webp',
-        ],
-        video: { src: '/videos/abanicos/acabanicoSenses.mp4' },
-        caption: 'Abanico I — Serie Schiaparelli',
-      },
-      {
-        src: '/images/projects/abanicos/blackFlowers02.jpg',
-        video: { src: '/videos/abanicos/blackFlowers02.mp4' },
-        caption: 'Abanico II — Flores negras',
-      },
-      {
-        src: '/images/projects/abanicos/flamencoLightBrown.jpg',
-        video: { src: '/videos/abanicos/flamencoLightBrown.mp4' },
-        caption: 'Abanico III — Feria de Abril 2025',
-      },
-      {
-        src: '/images/projects/abanicos/lightBrown2.jpeg',
-        caption: 'Abanico IV — Light Brown',
-      },
-      {
-        src: '/images/projects/abanicos/parkLightBlue.jpg',
-        video: { src: '/videos/abanicos/parkLightBlue.mp4' },
-        caption: 'Abanico V — Blue Park',
-      },
-      {
-        src: '/images/projects/abanicos/lightBlue.webp',
-        caption: 'Abanico VI — Light Blue',
-      },
-      {
-        src: '/images/projects/abanicos/brown.webp',
-        caption: 'Abanico VII — Brown',
-      },
-      {
-        src: '/images/projects/abanicos/nightLightBrown.jpg',
-        video: { src: '/videos/abanicos/nightLightBrown.mp4' },
-        caption: 'Abanico VIII — Night Brown',
-      },
-      {
-        src: '/images/projects/abanicos/brown2.webp',
-        caption: 'Abanico IX — Brown II',
-      },
-    ],
-        size: 'small',
-      },
-      {
         slug: 'prendas-modificadas',
         title: 'Prendas modificadas',
         year: '2024',
@@ -186,13 +131,75 @@ export const series: Series[] = [
         longDescription:
           'Proyecto de modificación e intervención de prendas existentes mediante técnicas de pintura, decoloración y alteración de la estructura original. El objetivo es experimentar con la prenda como soporte creativo y reflexionar sobre la personalización y la transformación dentro de la moda.',
         cover: '/images/projects/prendas-modificadas/01.png',
-        coverAspect: 'aspect-[5/8]', 
+        hero: '/images/projects/prendas-modificadas/costuraThumb.jpg',
+        coverAspect: 'aspect-[5/8]',
         galleryLayout: 'editorial',
         gallery: [
-          { src: '/images/projects/prendas-modificadas/pantalones.png'},
+          { src: '/images/projects/prendas-modificadas/pantalones.png' },
         ],
         videos: [],
         size: 'small',
+      },
+      {
+        slug: 'abanicos',
+        display: 'grid',
+        title: 'Abanicos pintados a mano',
+        year: '2024',
+        category: 'Objeto',
+        description:
+          'Serie de abanicos intervenidos como ejercicio de exploración del color y el gesto. El abanico como extensión simbólica del cuerpo.',
+        longDescription:
+          'Serie de abanicos intervenidos y pintados a mano como ejercicio de exploración del color, el gesto y el objeto. El abanico se entiende como complemento estético y extensión simbólica del cuerpo dentro del lenguaje de la moda.',
+        cover: '/images/projects/abanicos/schiaparelli-01.png',
+        hero: '/images/projects/abanicos/4.jpg',
+        gallery: [
+          {
+            src: '/images/projects/abanicos/acabanicoSenses.jpg',
+            images: [
+              '/images/projects/abanicos/01b.webp',
+              '/images/projects/abanicos/01c.webp',
+            ],
+            video: { src: '/videos/abanicos/acabanicoSenses.mp4' },
+            caption: 'Abanico I — Serie Schiaparelli',
+          },
+          {
+            src: '/images/projects/abanicos/blackFlowers02.jpg',
+            video: { src: '/videos/abanicos/blackFlowers02.mp4' },
+            caption: 'Abanico II — Flores negras',
+          },
+          {
+            src: '/images/projects/abanicos/flamencoLightBrown.jpg',
+            video: { src: '/videos/abanicos/flamencoLightBrown.mp4' },
+            caption: 'Abanico III — Feria de Abril 2025',
+          },
+          {
+            src: '/images/projects/abanicos/lightBrown2.jpeg',
+            caption: 'Abanico IV — Light Brown',
+          },
+          {
+            src: '/images/projects/abanicos/parkLightBlue.jpg',
+            video: { src: '/videos/abanicos/parkLightBlue.mp4' },
+            caption: 'Abanico V — Blue Park',
+          },
+          {
+            src: '/images/projects/abanicos/lightBlue.webp',
+            caption: 'Abanico VI — Light Blue',
+          },
+          {
+            src: '/images/projects/abanicos/brown.webp',
+            caption: 'Abanico VII — Brown',
+          },
+          {
+            src: '/images/projects/abanicos/nightLightBrown.jpg',
+            video: { src: '/videos/abanicos/nightLightBrown.mp4' },
+            caption: 'Abanico VIII — Night Brown',
+          },
+          {
+            src: '/images/projects/abanicos/brown2.webp',
+            caption: 'Abanico IX — Brown II',
+          },
+        ],
+        size: 'large',
       },
     ],
   },
@@ -211,7 +218,8 @@ export const series: Series[] = [
         category: 'Calzado',
         description: '...',
         longDescription: '...',
-        cover: '/images/projects/calzado/bitterSweet.png',
+        cover: '/images/projects/calzado/thumbTacons.jpg', //home
+        hero: '/images/projects/calzado/bitterSweet.png',
         display: 'case-study',
         caseStudies: [
           {

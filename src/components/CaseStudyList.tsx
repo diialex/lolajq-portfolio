@@ -66,6 +66,7 @@ function CaseRow({ cs, index, title }: { cs: CaseStudy; index: number; title: st
           colSpan="md:col-span-4"
           columns={2}
           blend={false}
+          uniform
         />
         <PhaseColumn
           label="Bocetos"

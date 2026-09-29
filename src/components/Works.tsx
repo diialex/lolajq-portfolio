@@ -1,4 +1,3 @@
-// src/components/Works.tsx
 import { series, type Series } from '@/data/projects';
 import ProjectCard from './ProjectCard';
 
@@ -22,8 +21,8 @@ export default function Works() {
         </header>
 
         <div className="space-y-48">
-          {series.map((serie) => (
-            <SerieBlock key={serie.id} serie={serie} />
+          {series.map((serie, si) => (
+            <SerieBlock key={serie.id} serie={serie} seriesIndex={si} />
           ))}
         </div>
       </div>
@@ -31,10 +30,15 @@ export default function Works() {
   );
 }
 
-function SerieBlock({ serie }: { serie: Series }) {
+function SerieBlock({
+  serie,
+  seriesIndex,
+}: {
+  serie: Series;
+  seriesIndex: number;
+}) {
   return (
     <article>
-      {/* Cabecera de la serie */}
       <header className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-16 md:mb-24 border-t border-ink/10 pt-8">
         <div className="md:col-span-3">
           <p className="font-display text-6xl md:text-7xl text-gold leading-none">
@@ -56,10 +60,12 @@ function SerieBlock({ serie }: { serie: Series }) {
         </div>
       </header>
 
-      {/* Grid de proyectos de la serie */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-24">
         {serie.projects.map((project, i) => (
-          <div key={project.slug} className={getLayout(i, serie.projects.length)}>
+          <div
+            key={project.slug}
+            className={getLayout(i, serie.projects.length, seriesIndex)}
+          >
             <ProjectCard project={project} index={i} />
           </div>
         ))}
@@ -68,14 +74,26 @@ function SerieBlock({ serie }: { serie: Series }) {
   );
 }
 
-// Layout según número de proyectos en la serie
-function getLayout(index: number, total: number): string {
+function getLayout(index: number, total: number, seriesIndex: number): string {
+  // Una sola pieza → centrada
   if (total === 1) return 'md:col-span-8 md:col-start-3';
+
+  // Dos piezas → alternamos según la serie (par/impar)
   if (total === 2) {
-    return index === 0
-      ? 'md:col-span-7 md:col-start-1'
-      : 'md:col-span-5 md:col-start-8 md:mt-32';
+    const reverse = seriesIndex % 2 === 1; // serie 02 (impar) → invertida
+    if (index === 0) {
+      // Izquierda
+      return reverse
+        ? 'md:col-span-5 md:col-start-1'         // pequeña izq (serie impar)
+        : 'md:col-span-7 md:col-start-1';        // grande izq (serie par)
+    }
+    // Derecha
+    return reverse
+      ? 'md:col-span-7 md:col-start-6 md:-mt-16' // grande der arriba (serie impar)
+      : 'md:col-span-5 md:col-start-8 md:mt-32'; // pequeña der abajo (serie par)
   }
+
+  // Más de 2 (fallback, por si añades series con 3+ proyectos)
   const patterns = [
     'md:col-span-7 md:col-start-1',
     'md:col-span-5 md:col-start-8 md:mt-32',

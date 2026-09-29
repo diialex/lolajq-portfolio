@@ -58,7 +58,7 @@ export default async function ProjectPage({
       <div className="mx-auto max-w-7xl px-6 mb-24">
         <div className="relative aspect-[4/5] md:aspect-[16/9] bg-paper overflow-hidden">
           <Image
-            src={asset(project.cover)}
+            src={asset(project.hero ?? project.cover)}
             alt={project.title}
             fill
             priority
