@@ -13,9 +13,9 @@ export default function Manifesto() {
           transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
           className="font-display text-3xl md:text-5xl leading-[1.3] text-ink"
         >
-          Ingeniería en cada puntada.
+          El cuerpo como punto de partida.
           <br />
-          <span className="text-stone italic">Artesanía</span> en cada decisión.
+          <span className="text-stone italic">La materia</span> en respuesta.
         </motion.p>
 
         <motion.div
