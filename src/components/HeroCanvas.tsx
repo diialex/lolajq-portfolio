@@ -73,6 +73,8 @@ export default function HeroCanvas() {
           enableZoom={false}
           enablePan={false}
           rotateSpeed={0.35}
+          autoRotate
+          autoRotateSpeed={0.4}
         />
         <ambientLight intensity={0.55} />
         <directionalLight position={[10, 10, 10]} intensity={0.9} />
