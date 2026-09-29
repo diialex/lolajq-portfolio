@@ -21,13 +21,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'py-4 bg-cream/80 backdrop-blur-md border-b border-ink/5'
-          : 'py-8 bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 md:px-0 ${
+        scrolled ? 'py-4 bg-cream/80 backdrop-blur-md border-b border-ink/5' : 'py-8 bg-transparent'
       }`}
     >
-      <ul className="flex justify-center gap-10 text-xs tracking-[0.25em] uppercase font-light">
+      <ul className="flex justify-center gap-5 md:gap-10 text-[10px] md:text-xs tracking-[0.15em] md:tracking-[0.25em] uppercase font-light">
         {links.map((l) => (
           <li key={l.href}>
             <Link
