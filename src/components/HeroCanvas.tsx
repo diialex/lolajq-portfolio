@@ -68,7 +68,7 @@ function PaletteSphere() {
 export default function HeroCanvas() {
   return (
     <div className="absolute inset-0 z-0 h-full w-full bg-stone-50">
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
         <OrbitControls
           enableZoom={false}
           enablePan={false}
@@ -77,7 +77,7 @@ export default function HeroCanvas() {
         <ambientLight intensity={0.55} />
         <directionalLight position={[10, 10, 10]} intensity={0.9} />
         <PaletteSphere />
-        <Environment preset="studio" />
+        <Environment preset="city" />
       </Canvas>
     </div>
   );

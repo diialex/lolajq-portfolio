@@ -23,13 +23,14 @@ export default function Home() {
         </Suspense>
 
         <div className="z-10 text-center pointer-events-none">
-          <h1 className="font-display text-6xl md:text-8xl font-light tracking-[0.2em] text-charcoal uppercase ml-4">
+          <h1 className="font-display text-6xl md:text-8xl font-light tracking-[0.2em] text-white uppercase ml-4 mix-blend-difference">
             Lola JQ
           </h1>
-          <p className="mt-6 text-sm md:text-base font-light tracking-[0.3em] text-stone uppercase">
+          <p className="mt-6 text-sm md:text-base font-light tracking-[0.3em] text-white uppercase mix-blend-difference">
             Confección · Artesanía · Diseño
           </p>
         </div>
+
       </section>
 
       {/* RESTO DE SECCIONES */}
