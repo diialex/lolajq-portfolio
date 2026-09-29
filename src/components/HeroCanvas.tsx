@@ -1,6 +1,6 @@
 'use client';
 
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import {
   MeshDistortMaterial,
   Sphere,
@@ -53,6 +53,34 @@ function PaletteSphere() {
   );
 }
 
+// Ajusta la cámara según el aspect ratio para que la esfera siempre quepa
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+
+  useEffect(() => {
+    const aspect = size.width / size.height;
+
+    // Base: cámara a z=5 con fov=45 en desktop apaisado.
+    // En vertical (aspect < 1), alejamos la cámara proporcionalmente.
+    // En horizontal muy ancho (aspect > 1.5), la acercamos un poco.
+    let z = 5;
+
+    if (aspect < 1) {
+      // Móvil vertical: alejamos hasta z≈7.5 en aspecto 9/16
+      const t = Math.max(0, (1 - aspect) / 0.44); // 0 a 1
+      z = 5 + t * 2.5;
+    } else if (aspect > 1.5) {
+      // Pantallas muy anchas: acercamos ligeramente
+      z = 5 - Math.min(1, (aspect - 1.5) * 0.5);
+    }
+
+    camera.position.set(0, 0, z);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
+
+  return null;
+}
+
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
@@ -78,6 +106,7 @@ export default function HeroCanvas() {
           pointerEvents: isDesktop ? 'auto' : 'none',
         }}
       >
+        <ResponsiveCamera />
         {isDesktop && (
           <OrbitControls
             enableZoom={false}
